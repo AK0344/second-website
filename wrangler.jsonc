@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "web-template-restaurant-nl",
+  "name": "second-website",
   "compatibility_date": "2026-06-01",
   "main": "_worker.js",
   "observability": {
