@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<link id="favicon" rel="icon" type="image/png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- EDIT: title, description, and OG tags -->
+<title>Restaurant Naam — Uw Tagline</title>
+<meta name="description" content="Een korte omschrijving van uw restaurant.">
+<meta property="og:title"       content="Restaurant Naam">
+<meta property="og:description" content="Een korte omschrijving van uw restaurant.">
+<meta property="og:image"       content="assets/img/og-image.jpg">
+<meta property="og:type"        content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=block" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js" defer></script>
+</head>
+
+<body>
+
+<!-- ============================================================
+     NAVIGATION
+     Brand name/logo is injected from config.js.
+     Nav links are editable in the <ul> below.
+============================================================ -->
+<nav class="site-nav transparent" id="siteNav">
+  <div class="nav-inner">
+
+    <!-- Logo -->
+    <a href="#top" class="nav-logo">
+      <img class="nav-logo-img" src="" alt="Logo" style="display:none">
+      <div>
+        <div class="nav-logo-text" data-brand="name"></div>
+        <div class="nav-logo-sub" data-brand="tagline"></div>
+      </div>
+    </a>
+
+    <!-- Desktop nav links — EDIT labels and hrefs here -->
+    <div class="nav-links">
+      <a class="nav-link" href="#menu">Menu</a>
+      <a class="nav-link" href="#about">Over Ons</a>
+      <a class="nav-link" href="#gallery">Galerij</a>
+      <a class="nav-link" href="#contact">Contact</a>
+    </div>
+
+    <!-- Right actions -->
+    <div class="nav-actions">
+      <a class="nav-phone" id="navPhone" href="tel:+3100000000" aria-label="Bel ons">
+        <span class="nav-phone-icon"><iconify-icon icon="ph:phone" width="15" height="15" aria-hidden="true"></iconify-icon></span>
+        <span class="nav-phone-num">+31 00 000 0000</span>
+      </a>
+      <!-- Hamburger (mobile) -->
+      <button class="nav-hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+</nav>
+
+<!-- Mobile nav drawer -->
+<div class="mobile-nav" id="mobileMenu">
+  <a class="nav-link" href="#menu"    onclick="toggleMobileNav()">Menu</a>
+  <a class="nav-link" href="#about"   onclick="toggleMobileNav()">Over Ons</a>
+  <a class="nav-link" href="#gallery" onclick="toggleMobileNav()">Galerij</a>
+  <a class="nav-link" href="#contact"       onclick="toggleMobileNav()">Contact</a>
+  <a class="btn btn-outline btn-full" id="mobileNavPhone" href="tel:+3100000000" onclick="toggleMobileNav()" style="margin-top:12px;display:flex;align-items:center;justify-content:center;gap:7px"><iconify-icon icon="ph:phone" width="14" height="14" aria-hidden="true"></iconify-icon> Bel Ons</a>
+  <a class="btn btn-primary btn-full" href="order.html" style="margin-top:8px">Bestel Nu</a>
+</div>
+
+<!-- ============================================================
+     HERO
+     Background image: assets/img/hero.jpg (gradient fallback)
+     EDIT: title, subtitle, body text, and CTA labels below.
+============================================================ -->
+<section class="hero" id="top">
+  <img class="hero-bg"
+       src="assets/img/hero.jpg"
+       alt="Hero"
+       onerror="this.style.display='none'">
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <div class="hero-inner">
+      <a class="hero-label" id="heroLabel" href="#" target="_blank" rel="noopener"><!-- EDIT: short badge text, e.g. "Nieuw-West · Amsterdam" -->
+        <iconify-icon icon="ph:map-pin" width="13" height="13" aria-hidden="true" style="vertical-align:-1px;margin-right:4px"></iconify-icon>Nieuw-West · Amsterdam
+      </a>
+
+      <!-- EDIT: headline — can be restaurant name or a bold statement -->
+      <h1 class="hero-title">Restaurant<br>Naam</h1>
+
+      <!-- EDIT: tagline -->
+      <p class="hero-sub">Uw tagline hier · Ambacht · Passie</p>
+
+      <!-- Opening hours — populated from BRAND.hours by JS -->
+      <div class="hero-hours" id="heroHours" style="display:none"></div>
+
+      <div class="hero-ctas">
+        <a class="btn btn-primary btn-lg" href="order.html">Bestel Nu →</a>
+        <a class="btn btn-outline btn-lg" href="#about">Ons Verhaal</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="hero-scroll">
+    <iconify-icon icon="ph:arrow-down" width="20" height="20" aria-hidden="true"></iconify-icon>
+  </div>
+</section>
+
+<!-- ============================================================
+     TRUST BAR
+     Rendered from BRAND.trust_badges in config.js
+============================================================ -->
+<div class="trust-bar" id="trustBar">
+  <div class="trust-bar-inner" id="trustBarInner">
+    <!-- Populated by JS -->
+  </div>
+</div>
+
+<!-- ============================================================
+     ABOUT
+     EDIT: text content directly in the HTML below.
+     Image: assets/img/about.jpg (emoji placeholder if missing)
+============================================================ -->
+<section class="section section-alt" id="about">
+  <div class="container">
+    <div class="about-grid">
+
+      <!-- Image side -->
+      <div class="about-img-wrap fade-in">
+        <img class="about-img"
+             src="assets/img/about.jpg"
+             alt="Over ons"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="about-img-ph" style="display:none">👨‍🍳</div>
+
+        <!-- Floating stat — EDIT number and label -->
+        <div class="about-stat-card">
+          <div class="about-stat-num" id="aboutStatNum">2015</div>
+          <div class="about-stat-lbl" id="aboutStatLbl">Opgericht</div>
+        </div>
+      </div>
+
+      <!-- Text side -->
+      <div class="about-content">
+        <span class="eyebrow">Over Ons</span>
+
+        <!-- EDIT: section title -->
+        <h2 class="about-title fade-in">Authentiek · Ambacht · Passie</h2>
+
+        <!-- EDIT: two paragraphs of brand story -->
+        <p class="about-body fade-in delay-1">
+          Eerste paragraaf over uw restaurant. Vertel uw verhaal — waar u vandaan komt,
+          wat u drijft, en waar u voor staat.
+        </p>
+        <p class="about-body fade-in delay-2">
+          Tweede paragraaf. Vertel over uw ingrediënten, bereidingswijze,
+          of de mensen achter de keuken.
+        </p>
+
+        <!-- Feature bullets — rendered from CONTENT.about.features in config.js -->
+        <ul class="about-features" id="aboutFeatures">
+          <!-- Populated by JS -->
+        </ul>
+
+        <div class="about-cta fade-in">
+          <a class="btn btn-primary" href="order.html">Bestel Nu →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FEATURED DISHES
+     Auto-renders all menu items with recommended: true from MENU.
+     Falls back to first 3 items if none are flagged recommended.
+============================================================ -->
+<section class="section" id="menu">
+  <div class="container">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+      <div>
+        <span class="eyebrow">Ons Menu</span>
+        <!-- EDIT: featured section title -->
+        <h2 class="section-title">Onze Aanraders</h2>
+        <p class="section-sub">Handpicked favorieten van de chef.</p>
+      </div>
+      <a class="btn btn-outline-dark" href="order.html">Heel menu bekijken →</a>
+    </div>
+
+    <div class="featured-grid" id="featuredGrid">
+      <!-- Populated by JS from MENU config -->
+    </div>
+
+    <div class="featured-cta">
+      <a class="btn btn-primary btn-lg" href="order.html">Alles Bestellen →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FEATURES / USP
+     Rendered from CONTENT.features in config.js
+============================================================ -->
+<section class="section section-alt">
+  <div class="container">
+    <div style="text-align:center">
+      <span class="eyebrow">Waarom Wij</span>
+      <!-- EDIT: title -->
+      <h2 class="section-title">Kwaliteit die u Proeft</h2>
+    </div>
+    <div class="features-grid" id="featuresGrid">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     GALLERY
+     Replace emoji placeholders with real <img> tags.
+     Image: assets/img/gallery-1.jpg through gallery-7.jpg
+     or any filename — update the src attributes below.
+============================================================ -->
+<section class="section" id="gallery">
+  <div class="container">
+    <span class="eyebrow">Galerij</span>
+    <h2 class="section-title">Onze Keuken</h2>
+
+    <div class="gallery-grid">
+      <!-- EDIT: replace src="" with real image paths -->
+      <div class="gallery-item">
+        <img src="assets/img/gallery-1.jpg" alt="Galerij 1"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="gallery-item-ph" style="display:none">🔥</div>
+      </div>
+      <div class="gallery-item">
+        <img src="assets/img/gallery-2.jpg" alt="Galerij 2"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="gallery-item-ph" style="display:none">🥩</div>
+      </div>
+      <div class="gallery-item">
+        <img src="assets/img/gallery-3.jpg" alt="Galerij 3"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="gallery-item-ph" style="display:none">🌿</div>
+      </div>
+      <div class="gallery-item">
+        <img src="assets/img/gallery-4.jpg" alt="Galerij 4"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="gallery-item-ph" style="display:none">🍽️</div>
+      </div>
+      <div class="gallery-item">
+        <img src="assets/img/gallery-5.jpg" alt="Galerij 5"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="gallery-item-ph" style="display:none">🫒</div>
+      </div>
+      <div class="gallery-item">
+        <img src="assets/img/gallery-6.jpg" alt="Galerij 6"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="gallery-item-ph" style="display:none">🔥</div>
+      </div>
+      <div class="gallery-item">
+        <img src="assets/img/gallery-7.jpg" alt="Galerij 7"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="gallery-item-ph" style="display:none">🥗</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     REVIEWS / TESTIMONIALS
+     Rendered from CONTENT.testimonials in config.js
+============================================================ -->
+<section class="section section-alt">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:0">
+      <span class="eyebrow">Reviews</span>
+      <h2 class="section-title">Wat Onze Gasten Zeggen</h2>
+      <!-- EDIT: pull in your actual review score from config -->
+      <p class="section-sub" style="margin:10px auto 0">
+        <strong id="reviewScore"></strong> op Google — <span id="reviewCount"></span> reviews
+      </p>
+    </div>
+    <div class="reviews-grid" id="reviewsGrid">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT / LOCATION
+     Hours table is rendered from BRAND.hours in config.js.
+     Map: replace the <div> with a real Google Maps <iframe>.
+============================================================ -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- Map area -->
+      <div class="fade-in">
+        <div id="mapContainer">
+          <div class="map-frame-ph"><iconify-icon icon="ph:map-trifold" width="36" height="36" aria-hidden="true"></iconify-icon></div>
+        </div>
+        <div style="margin-top:14px">
+          <a class="btn btn-outline-dark" id="mapsLink" href="#" target="_blank" style="display:inline-flex;align-items:center;gap:6px">
+            <iconify-icon icon="ph:map-pin" width="14" height="14" aria-hidden="true"></iconify-icon> Routebeschrijving
+          </a>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div class="contact-info fade-in delay-1">
+
+        <div>
+          <div class="contact-block-title">Adres</div>
+          <div class="contact-detail" id="contactAddress" style="display:flex;align-items:flex-start;gap:6px">
+            <iconify-icon icon="ph:map-pin" width="14" height="14" aria-hidden="true" style="flex-shrink:0;margin-top:2px"></iconify-icon>Straatnaam 1, 1000 AA Amsterdam
+          </div>
+        </div>
+
+        <div>
+          <div class="contact-block-title">Telefoon</div>
+          <div class="contact-detail" style="display:flex;align-items:center;gap:6px">
+            <iconify-icon icon="ph:phone" width="14" height="14" aria-hidden="true"></iconify-icon><a href="#" id="contactPhone">+31 00 000 0000</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="contact-block-title">E-mail</div>
+          <div class="contact-detail" style="display:flex;align-items:center;gap:6px">
+            <iconify-icon icon="ph:envelope-simple" width="14" height="14" aria-hidden="true"></iconify-icon><a href="#" id="contactEmail">info@uwrestaurant.nl</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="contact-block-title">Openingstijden</div>
+          <table class="hours-table" id="hoursTable">
+            <!-- Populated by JS -->
+          </table>
+        </div>
+
+        <div>
+          <a class="btn btn-primary" href="order.html">Nu Bestellen →</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     Contact info rendered from BRAND config.
+     EDIT: nav links, legal links, and social buttons below.
+============================================================ -->
+<footer>
+  <div class="footer-grid">
+
+    <!-- Col 1: Brand -->
+    <div>
+      <div class="footer-brand-name" data-brand="name">Restaurant Naam</div>
+      <p class="footer-brand-desc" id="footerDesc">Een korte omschrijving van uw restaurant.</p>
+      <div class="footer-social" id="footerSocial">
+        <!-- Social buttons injected by JS if URLs are set in config -->
+      </div>
+    </div>
+
+    <!-- Col 2: Navigation — EDIT links -->
+    <div>
+      <div class="footer-col-title">Navigatie</div>
+      <ul class="footer-links">
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#about">Over Ons</a></li>
+        <li><a href="#gallery">Galerij</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="order.html">Online Bestellen</a></li>
+      </ul>
+    </div>
+
+    <!-- Col 3: Contact — populated by JS -->
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <div id="footerContact"></div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <div>© <span id="year"></span> <span data-brand="name">Restaurant Naam</span>. Alle rechten voorbehouden.</div>
+    <!-- EDIT: legal links -->
+    <div class="footer-legal">
+      <a href="privacy.html">Privacybeleid</a>
+      <a href="#">Algemene Voorwaarden</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating reservation button — opens reservation popup -->
+<button class="home-reserv-fab" onclick="openReservModal()" aria-label="Tafel reserveren" type="button">
+  <iconify-icon icon="ph:calendar-check" width="15" height="15" aria-hidden="true"></iconify-icon>
+  Reserveer
+</button>
+
+<!-- Reservation panel — anchored to the bottom-left FAB -->
+<div class="reserv-panel" id="reservPanel" role="dialog" aria-modal="true" aria-labelledby="reservPanelTitleEl">
+
+  <!-- Header -->
+  <div class="reserv-panel-hdr">
+    <h2 class="reserv-panel-title" id="reservPanelTitleEl">
+      <iconify-icon icon="ph:calendar-check" width="15" height="15" aria-hidden="true" style="opacity:.75;flex-shrink:0"></iconify-icon>
+      Een Tafel Reserveren
+    </h2>
+    <button class="reserv-panel-close" onclick="closeReservModal()" aria-label="Sluiten" type="button">
+      <iconify-icon icon="ph:x" width="14" height="14" aria-hidden="true"></iconify-icon>
+    </button>
+  </div>
+
+  <!-- Form -->
+  <div class="reserv-panel-body" id="reservModalForm">
+
+    <!-- Date + Time -->
+    <div class="reserv-row-2">
+      <div class="form-group">
+        <label class="form-label">Datum *</label>
+        <div class="cal-field" id="rCalField">
+          <button class="form-input cal-trigger" id="rCalTrigger" type="button" onclick="toggleRCalPopup()">
+            <span id="rCalTriggerLabel">Kies een datum</span>
+            <iconify-icon icon="ph:calendar" width="15" height="15" aria-hidden="true"></iconify-icon>
+          </button>
+          <div class="cal-popup" id="rCalPopup" style="display:none">
+            <div id="rCalWrap"></div>
+          </div>
+        </div>
+        <div class="field-error" id="rDatumError" style="display:none"></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="rTijd">Tijdstip *</label>
+        <select class="form-input" id="rTijd">
+          <option value="">Kies eerst een datum</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Party size -->
+    <div class="form-group">
+      <label class="form-label" for="rPersonen">Aantal personen *</label>
+      <select class="form-input" id="rPersonen"></select>
+      <div class="large-party-notice" id="largePartyNotice" style="display:none">
+        <iconify-icon icon="ph:info" width="15" height="15" aria-hidden="true" style="flex-shrink:0;vertical-align:-2px;margin-right:5px"></iconify-icon> Voor grote groepen nemen wij persoonlijk contact op om de details te bespreken. Uw aanvraag wordt zo snel mogelijk behandeld.
+      </div>
+    </div>
+
+    <!-- Name + Phone -->
+    <div class="reserv-row-2">
+      <div class="form-group">
+        <label class="form-label" for="rNaam">Naam *</label>
+        <input class="form-input" type="text" id="rNaam"
+               placeholder="Uw volledige naam" autocomplete="name" enterkeyhint="next">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="rTel">Telefoonnummer *</label>
+        <input class="form-input" type="tel" id="rTel"
+               placeholder="+31 6 00 00 00 00 of +44 …" autocomplete="tel" inputmode="tel" enterkeyhint="next">
+        <div class="field-error" id="rTelError" style="display:none"></div>
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <label class="form-label" for="rEmail">E-mailadres *</label>
+      <input class="form-input" type="email" id="rEmail"
+             placeholder="uwmail@voorbeeld.nl" autocomplete="email" inputmode="email" enterkeyhint="next">
+      <div class="field-error" id="rEmailError" style="display:none"></div>
+    </div>
+
+    <!-- Note -->
+    <div class="form-group">
+      <label class="form-label" for="rNote">Opmerking (optioneel)</label>
+      <textarea class="form-input" id="rNote"
+                placeholder="Bijv. verjaardag, kinderstoel, dieetwensen, rolstoeltoegang…"></textarea>
+    </div>
+
+    <div class="field-error" id="rFormError" style="display:none; margin-bottom:12px"></div>
+
+    <button class="btn btn-primary btn-full btn-lg" id="rSubmitBtn" onclick="submitReservation()" type="button">
+      Reservering aanvragen →
+    </button>
+    <p class="reserv-footnote">Uw reservering wordt bevestigd per e-mail.</p>
+
+  </div>
+
+  <!-- Confirm screen (inside panel) -->
+  <div class="reserv-panel-confirm" id="reservModalConfirm" style="display:none">
+    <div class="confirm-icon">
+      <iconify-icon icon="ph:calendar-check" width="56" height="56" aria-hidden="true"></iconify-icon>
+    </div>
+    <h2 class="confirm-title">Aanvraag Ontvangen!</h2>
+    <p class="confirm-body" id="rConfirmBody">
+      Uw reserveringsverzoek is ontvangen.<br>
+      Wij bevestigen zo spoedig mogelijk per e-mail.
+    </p>
+    <div class="reserv-panel-confirm-actions">
+      <button class="btn btn-primary" onclick="resetReservModal()" type="button">Nieuwe reservering</button>
+      <button class="btn btn-ghost" onclick="closeReservModal()" type="button">Sluiten</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- Floating cart button — shows saved cart count from order page -->
+<a class="home-cart-fab" id="homeCartFab" href="order.html" aria-label="Winkelwagen">
+  <iconify-icon icon="ph:fork-knife" width="22" height="22" aria-hidden="true"></iconify-icon>
+  <span class="home-cart-fab-count" id="homeCartFabCount" style="display:none">0</span>
+</a>
+
+<!-- Scripts -->
+<script src="assets/js/config.js"></script>
+<script>
+/* ── HOMEPAGE INIT ─────────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', () => {
+  applyBrandToPage();
+  renderTrustBar();
+  renderAboutFeatures();
+  renderFeaturedDishes();
+  renderFeatures();
+  renderReviews();
+  renderContactInfo();
+  renderFooter();
+  renderHeroHours();
+  initScrollAnimations();
+  initNavScroll();
+  initMobileNav();
+  initHomepageCart();
+});
+
+/* Apply BRAND data to static elements */
+function applyBrandToPage() {
+  document.querySelectorAll('[data-brand="name"]').forEach(el => el.textContent = BRAND.name);
+  document.querySelectorAll('[data-brand="tagline"]').forEach(el => el.textContent = BRAND.tagline);
+
+  /* Logo image — homepage shows image only; sub-pages show image + name */
+  const logoImg = document.querySelector('.nav-logo-img');
+  if (BRAND.logo_img && logoImg) {
+    logoImg.src = BRAND.logo_img;
+    logoImg.style.display = '';
+    document.getElementById('favicon').href = BRAND.logo_img;
+    const logoTxt = document.querySelector('.nav-logo-text');
+    if (logoTxt) logoTxt.style.display = 'none';
+  }
+
+  /* Nav phone button */
+  const telHref = `tel:${BRAND.phone.replace(/\s/g, '')}`;
+  const navPhone = document.getElementById('navPhone');
+  if (navPhone) {
+    navPhone.href = telHref;
+    navPhone.querySelector('.nav-phone-num').textContent = BRAND.phone;
+  }
+  const mobileNavPhone = document.getElementById('mobileNavPhone');
+  if (mobileNavPhone) {
+    mobileNavPhone.href = telHref;
+    mobileNavPhone.innerHTML = `<iconify-icon icon="ph:phone" width="14" height="14" aria-hidden="true"></iconify-icon> ${BRAND.phone}`;
+  }
+
+  /* Review stats */
+  const rs = document.getElementById('reviewScore');
+  const rc = document.getElementById('reviewCount');
+  if (rs) rs.innerHTML = BRAND.reviews.score + ' <iconify-icon icon="ph:star-fill" width="13" height="13" aria-hidden="true" style="color:var(--secondary);vertical-align:-1px"></iconify-icon>';
+  if (rc) rc.textContent = BRAND.reviews.count;
+
+  /* Hero label — link to Google Maps */
+  const heroLabel = document.getElementById('heroLabel');
+  if (heroLabel) {
+    const addr = BRAND.address;
+    heroLabel.href = addr.maps_url ||
+      `https://maps.google.com/?q=${encodeURIComponent(addr.street + ', ' + addr.postal + ' ' + addr.city)}`;
+  }
+}
+
+function renderTrustBar() {
+  const el = document.getElementById('trustBarInner');
+  if (!el) return;
+  el.innerHTML = BRAND.trust_badges.map(b => `
+    <div class="trust-item">
+      <span class="trust-icon">${b.icon}</span>
+      <span class="trust-label">${b.label}</span>
+    </div>`).join('');
+}
+
+function renderHeroHours() {
+  const el = document.getElementById('heroHours');
+  if (!el || !BRAND.hours || !BRAND.hours.length) return;
+  const items = BRAND.hours
+    .map(h => `<span class="hero-hours-item">${h.days} <strong>${h.time}</strong></span>`)
+    .join('<span class="hero-hours-sep">·</span>');
+  el.innerHTML = items;
+  el.style.display = 'flex';
+}
+
+function renderAboutFeatures() {
+  const stat = CONTENT.about.stat;
+  const numEl = document.getElementById('aboutStatNum');
+  const lblEl = document.getElementById('aboutStatLbl');
+  if (numEl && stat) numEl.textContent = stat.number;
+  if (lblEl && stat) lblEl.textContent = stat.label;
+
+  const ul = document.getElementById('aboutFeatures');
+  if (!ul) return;
+  ul.innerHTML = CONTENT.about.features.map(f => `
+    <li class="about-feature fade-in">
+      <span class="about-feature-icon">${f.icon}</span> ${f.label}
+    </li>`).join('');
+}
+
+function renderFeaturedDishes() {
+  const container = document.getElementById('featuredGrid');
+  if (!container) return;
+
+  /* Collect recommended items, fall back to first 3 overall */
+  let featured = [];
+  MENU.forEach(cat => cat.items.forEach(item => { if (item.recommended) featured.push(item); }));
+  if (featured.length === 0) {
+    MENU.forEach(cat => cat.items.forEach(item => { if (featured.length < 3) featured.push(item); }));
+  }
+
+  container.innerHTML = featured.map(item => {
+    const src    = item.image || '';
+    const hasImg = !!src;
+    const price  = item.price === 0 ? 'Gratis' : BRAND.currency + ' ' + item.price.toFixed(2).replace('.', ',');
+    const badge  = item.recommended ? '<span class="feat-card-badge"><iconify-icon icon="ph:star-fill" width="11" height="11" aria-hidden="true" style="vertical-align:-1px;margin-right:3px"></iconify-icon>Aanbevolen</span>' : '';
+
+    return `
+<div class="feat-card fade-in">
+  <img class="feat-card-img"
+       src="${src}"
+       alt="${item.name}"
+       style="${hasImg ? '' : 'display:none'}"
+       onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+  <div class="feat-card-img-ph" style="${hasImg ? 'display:none' : ''}">${item.emoji}</div>
+  <div class="feat-card-body">
+    <div class="feat-card-name">${item.name}</div>
+    <p class="feat-card-desc">${item.desc}</p>
+    <div class="feat-card-foot">
+      <span class="feat-card-price">${price}</span>
+      ${badge}
+    </div>
+  </div>
+</div>`;
+  }).join('');
+}
+
+function renderFeatures() {
+  const el = document.getElementById('featuresGrid');
+  if (!el) return;
+  el.innerHTML = CONTENT.features.map((f, i) => `
+    <div class="feature-card fade-in delay-${i}">
+      <div class="feature-icon">${f.icon}</div>
+      <h3 class="feature-title">${f.title}</h3>
+      <p class="feature-body">${f.body}</p>
+    </div>`).join('');
+}
+
+function renderReviews() {
+  const el = document.getElementById('reviewsGrid');
+  if (!el) return;
+  el.innerHTML = CONTENT.testimonials.map(r => {
+    const stars = '★'.repeat(r.score) + '☆'.repeat(5 - r.score);
+    const init  = r.name.split(' ').map(w => w[0]).join('').slice(0,2).toUpperCase();
+    return `
+<div class="review-card fade-in">
+  <div class="review-stars">${stars}</div>
+  <p class="review-text">"${r.text}"</p>
+  <div class="review-author">
+    <div class="review-avatar">${init}</div>
+    <div>
+      <div class="review-name">${r.name}</div>
+      <div class="review-date">${r.date}</div>
+    </div>
+  </div>
+</div>`;
+  }).join('');
+}
+
+function renderContactInfo() {
+  const addr = BRAND.address;
+
+  /* Google Maps URL — use custom URL when set, otherwise auto-generate from address */
+  const mapsUrl = addr.maps_url ||
+    `https://maps.google.com/?q=${encodeURIComponent(addr.street + ', ' + addr.postal + ' ' + addr.city)}`;
+
+  /* Embed iframe */
+  const mapContainer = document.getElementById('mapContainer');
+  if (mapContainer) {
+    const embedQ = encodeURIComponent(addr.street + ', ' + addr.postal + ' ' + addr.city);
+    mapContainer.innerHTML = `<iframe class="map-frame"
+      src="https://maps.google.com/maps?q=${embedQ}&output=embed&hl=nl"
+      allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
+  }
+
+  const addrEl = document.getElementById('contactAddress');
+  if (addrEl) {
+    addrEl.innerHTML = `<iconify-icon icon="ph:map-pin" width="14" height="14" aria-hidden="true" style="flex-shrink:0;margin-top:2px"></iconify-icon><a href="${mapsUrl}" target="_blank" rel="noopener">${addr.street}, ${addr.postal} ${addr.city}</a>`;
+  }
+
+  const phoneEl = document.getElementById('contactPhone');
+  if (phoneEl) { phoneEl.textContent = BRAND.phone; phoneEl.href = `tel:${BRAND.phone.replace(/\s/g,'')}`; }
+
+  const emailEl = document.getElementById('contactEmail');
+  if (emailEl) { emailEl.textContent = BRAND.email; emailEl.href = `mailto:${BRAND.email}`; }
+
+  const mapsLink = document.getElementById('mapsLink');
+  if (mapsLink) mapsLink.href = mapsUrl;
+
+  const hoursEl = document.getElementById('hoursTable');
+  if (hoursEl) {
+    hoursEl.innerHTML = BRAND.hours.map(h => `
+      <tr><td>${h.days}</td><td>${h.time}</td></tr>`).join('');
+  }
+}
+
+function renderFooter() {
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const descEl = document.getElementById('footerDesc');
+  if (descEl) descEl.textContent = BRAND.description;
+
+  /* Social buttons */
+  const socialEl = document.getElementById('footerSocial');
+  if (socialEl) {
+    let html = '';
+    if (BRAND.social.instagram) html += `<a class="footer-social-btn" href="${BRAND.social.instagram}" target="_blank" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>`;
+    if (BRAND.social.facebook)  html += `<a class="footer-social-btn" href="${BRAND.social.facebook}" target="_blank" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>`;
+    socialEl.innerHTML = html;
+  }
+
+  /* Contact col */
+  const contactEl = document.getElementById('footerContact');
+  if (contactEl) {
+    const addr = BRAND.address;
+    const mapsUrl = addr.maps_url ||
+      `https://maps.google.com/?q=${encodeURIComponent(addr.street + ', ' + addr.postal + ' ' + addr.city)}`;
+    contactEl.innerHTML = `
+      <div class="footer-contact-line"><iconify-icon icon="ph:map-pin" width="13" height="13" aria-hidden="true" style="flex-shrink:0;margin-top:2px"></iconify-icon><a href="${mapsUrl}" target="_blank" rel="noopener">${addr.street}<br>${addr.postal} ${addr.city}</a></div>
+      <div class="footer-contact-line"><iconify-icon icon="ph:phone" width="13" height="13" aria-hidden="true"></iconify-icon><a href="tel:${BRAND.phone.replace(/\s/g,'')}">${BRAND.phone}</a></div>
+      <div class="footer-contact-line"><iconify-icon icon="ph:envelope-simple" width="13" height="13" aria-hidden="true"></iconify-icon><a href="mailto:${BRAND.email}">${BRAND.email}</a></div>
+      <div class="footer-contact-line" style="margin-top:12px; font-size:11px; color:rgba(255,255,255,.3); font-weight:700; letter-spacing:.5px; text-transform:uppercase;">
+        Rechtstreeks besteld = geen platformkosten
+      </div>`;
+  }
+}
+
+/* Scroll fade-in animations */
+function initScrollAnimations() {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+}
+
+/* Nav transparent → solid on scroll */
+function initNavScroll() {
+  const nav = document.getElementById('siteNav');
+  if (!nav) return;
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+}
+
+/* Floating cart FAB — reads saved cart from localStorage */
+function initHomepageCart() {
+  try {
+    const stored = localStorage.getItem('restaurant_cart');
+    if (!stored) return;
+    const data = JSON.parse(stored);
+    const validIds = new Set();
+    MENU.forEach(cat => cat.items.forEach(item => validIds.add(item.id)));
+    const count = Object.entries(data)
+      .filter(([id]) => validIds.has(id))
+      .reduce((s, [, q]) => s + (parseInt(q) || 0), 0);
+    if (count <= 0) return;
+    const countEl = document.getElementById('homeCartFabCount');
+    if (countEl) { countEl.textContent = count; countEl.style.display = ''; }
+  } catch {}
+}
+
+/* ── RESERVATION MODAL ────────────────────────────────────────── */
+let rModalInitialized = false;
+let rSelectedDate     = null;
+let rCalYear          = null;
+let rCalMonth         = null;
+
+function openReservModal() {
+  const panel = document.getElementById('reservPanel');
+  if (!panel) return;
+  panel.classList.add('open');
+  document.querySelector('.home-reserv-fab')?.classList.add('panel-open');
+  if (!rModalInitialized) {
+    initReservModal();
+    rModalInitialized = true;
+  }
+}
+
+function closeReservModal() {
+  document.getElementById('reservPanel')?.classList.remove('open');
+  document.querySelector('.home-reserv-fab')?.classList.remove('panel-open');
+}
+
+function initReservModal() {
+  initRDatePicker();
+  initRPartySizeSelect();
+  initRPhoneValidation();
+  document.addEventListener('click', e => {
+    const panel = document.getElementById('reservPanel');
+    if (!panel?.classList.contains('open')) return;
+    if (!e.target.closest('#rCalField')) closeRCalPopup();
+    if (!e.target.closest('#reservPanel') && !e.target.closest('.home-reserv-fab')) {
+      closeReservModal();
+    }
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeReservModal();
+  });
+}
+
+/* Date / time logic */
+function getLocalDateString(date = new Date()) {
+  return new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Amsterdam' }).format(date);
+}
+
+function getAmsterdamMinutes() {
+  const parts = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Europe/Amsterdam', hour: '2-digit', minute: '2-digit', hour12: false,
+  }).formatToParts(new Date());
+  return parseInt(parts.find(p => p.type === 'hour')?.value || 0) * 60
+       + parseInt(parts.find(p => p.type === 'minute')?.value || 0);
+}
+
+function getDayOfWeek(dateStr) {
+  const dayMap = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
+  const parts  = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Europe/Amsterdam', weekday: 'short',
+  }).formatToParts(new Date(dateStr));
+  return dayMap[parts.find(p => p.type === 'weekday')?.value] ?? 0;
+}
+
+const R_NL_MONTHS = ['Januari','Februari','Maart','April','Mei','Juni','Juli',
+                     'Augustus','September','Oktober','November','December'];
+
+function getRDateParts(date) {
+  const [year, month, day] = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Europe/Amsterdam', year: 'numeric', month: '2-digit', day: '2-digit',
+  }).format(date).split('-').map(Number);
+  return { year, month, day };
+}
+
+function toggleRCalPopup() {
+  const popup = document.getElementById('rCalPopup');
+  if (!popup) return;
+  const isOpen = popup.style.display !== 'none' && popup.style.display !== '';
+  if (isOpen) { popup.style.display = 'none'; } else { renderRCalendar(); popup.style.display = ''; }
+}
+
+function closeRCalPopup() {
+  const popup = document.getElementById('rCalPopup');
+  if (popup) popup.style.display = 'none';
+}
+
+function formatRDateLabel(isoDate) {
+  const today    = getLocalDateString();
+  const tomorrow = getLocalDateString(new Date(Date.now() + 86400000));
+  if (isoDate === today)    return 'Vandaag';
+  if (isoDate === tomorrow) return 'Morgen';
+  const parts = new Intl.DateTimeFormat('nl-NL', {
+    timeZone: 'Europe/Amsterdam', weekday: 'short', day: 'numeric', month: 'short',
+  }).formatToParts(new Date(`${isoDate}T12:00:00Z`));
+  const wd  = parts.find(p => p.type === 'weekday')?.value || '';
+  const day = parts.find(p => p.type === 'day')?.value     || '';
+  const mon = parts.find(p => p.type === 'month')?.value   || '';
+  return `${wd.charAt(0).toUpperCase() + wd.slice(1)} ${day} ${mon}`;
+}
+
+function updateRCalTriggerLabel() {
+  const lbl = document.getElementById('rCalTriggerLabel');
+  if (lbl) lbl.textContent = rSelectedDate ? formatRDateLabel(rSelectedDate) : 'Kies een datum';
+}
+
+function renderRCalendar() {
+  const wrap = document.getElementById('rCalWrap');
+  if (!wrap) return;
+
+  const todayParts  = getRDateParts(new Date());
+  if (!rCalYear || !rCalMonth) { rCalYear = todayParts.year; rCalMonth = todayParts.month; }
+
+  const today   = getLocalDateString();
+  const maxDays = BRAND.reservations?.max_days_ahead ?? 30;
+  const maxDate = getLocalDateString(new Date(Date.now() + maxDays * 86400000));
+  const maxP    = getRDateParts(new Date(`${maxDate}T12:00:00Z`));
+
+  const daysInMonth = new Date(rCalYear, rCalMonth, 0).getDate();
+  const firstISO    = `${rCalYear}-${String(rCalMonth).padStart(2,'0')}-01`;
+  const startOffset = (getDayOfWeek(firstISO) + 6) % 7;
+
+  const canPrev = !(rCalYear === todayParts.year && rCalMonth === todayParts.month);
+  const canNext = rCalYear < maxP.year || (rCalYear === maxP.year && rCalMonth < maxP.month);
+
+  const dowHtml = ['Ma','Di','Wo','Do','Vr','Za','Zo'].map(d => `<div class="cal-dow">${d}</div>`).join('');
+
+  let cells = '';
+  for (let i = 0; i < startOffset; i++) cells += '<div class="cal-day cal-empty"></div>';
+  for (let d = 1; d <= daysInMonth; d++) {
+    const iso      = `${rCalYear}-${String(rCalMonth).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const disabled = iso < today || iso > maxDate || generateReservSlots(iso).length === 0;
+    const isToday  = iso === today;
+    const isSel    = iso === rSelectedDate;
+    let cls = 'cal-day';
+    if (disabled)          cls += ' cal-disabled';
+    if (isToday && !isSel) cls += ' cal-today';
+    if (isSel)             cls += ' cal-selected';
+    const click = disabled ? '' : `onclick="selectRCalDay(this,'${iso}')"`;
+    cells += `<div class="${cls}" ${click}>${d}</div>`;
+  }
+
+  wrap.innerHTML = `
+    <div class="cal-nav">
+      <button class="cal-nav-btn" type="button" onclick="rCalNavigate(-1)" ${canPrev ? '' : 'disabled'}>‹</button>
+      <span class="cal-month-lbl">${R_NL_MONTHS[rCalMonth - 1]} ${rCalYear}</span>
+      <button class="cal-nav-btn" type="button" onclick="rCalNavigate(1)"  ${canNext ? '' : 'disabled'}>›</button>
+    </div>
+    <div class="cal-grid">${dowHtml}${cells}</div>`;
+}
+
+function rCalNavigate(dir) {
+  rCalMonth += dir;
+  if (rCalMonth < 1)  { rCalMonth = 12; rCalYear--; }
+  if (rCalMonth > 12) { rCalMonth = 1;  rCalYear++; }
+  renderRCalendar();
+}
+
+function selectRCalDay(btn, isoDate) {
+  rSelectedDate = isoDate;
+  closeRCalPopup();
+  updateRCalTriggerLabel();
+  populateTimeSlots();
+}
+
+function getFirstAvailableReservDate() {
+  const now = new Date();
+  for (let i = 0; i <= (BRAND.reservations?.max_days_ahead ?? 30); i++) {
+    const iso = getLocalDateString(new Date(now.getTime() + i * 86400000));
+    if (generateReservSlots(iso).length > 0) return iso;
+  }
+  return getLocalDateString();
+}
+
+function initRDatePicker() {
+  const p   = getRDateParts(new Date());
+  rCalYear  = p.year;
+  rCalMonth = p.month;
+  rSelectedDate = getFirstAvailableReservDate();
+  updateRCalTriggerLabel();
+  populateTimeSlots();
+}
+
+function populateTimeSlots() {
+  const timeEl = document.getElementById('rTijd');
+  const errEl  = document.getElementById('rDatumError');
+  if (!timeEl) return;
+  if (errEl) errEl.style.display = 'none';
+  const slots = generateReservSlots(rSelectedDate || '');
+  if (!slots.length) {
+    timeEl.innerHTML = '<option value="">Op deze dag zijn wij gesloten</option>';
+    if (errEl) {
+      errEl.textContent = 'Op deze datum zijn wij gesloten of zijn er geen tijdsloten meer beschikbaar.';
+      errEl.style.display = '';
+    }
+    return;
+  }
+  timeEl.innerHTML = slots.map(t => `<option value="${t}">${t}</option>`).join('');
+}
+
+function generateReservSlots(dateStr) {
+  if (!dateStr || !BRAND.schedule?.length) return [];
+  const dow   = getDayOfWeek(dateStr);
+  const entry = BRAND.schedule.find(s => s.days.includes(dow));
+  if (!entry) return [];
+  const cfg         = BRAND.reservations || {};
+  const interval    = cfg.slot_interval_min ?? 30;
+  const minDuration = cfg.min_duration_min  ?? 45;
+  const [oh, om] = entry.open.split(':').map(Number);
+  const [ch, cm] = entry.close.split(':').map(Number);
+  const openMin  = oh * 60 + om;
+  const closeMin = (ch === 0 && cm === 0) ? 24 * 60 : ch * 60 + cm;
+  const lastSlot = closeMin - minDuration;
+  let startMin   = openMin;
+  if (dateStr === getLocalDateString()) {
+    startMin = Math.max(openMin, getAmsterdamMinutes() + 30);
+  }
+  const firstSlot = Math.ceil(startMin / interval) * interval;
+  const slots = [];
+  for (let t = firstSlot; t <= lastSlot; t += interval) {
+    const hh = Math.floor(t / 60);
+    if (hh >= 24) break;
+    slots.push(`${String(hh).padStart(2, '0')}:${String(t % 60).padStart(2, '0')}`);
+  }
+  return slots;
+}
+
+function initRPartySizeSelect() {
+  const sel = document.getElementById('rPersonen');
+  if (!sel) return;
+  const max  = BRAND.reservations?.max_party_size ?? 15;
+  const opts = [];
+  for (let i = 1; i <= max; i++) {
+    opts.push(`<option value="${i}">${i} ${i === 1 ? 'persoon' : 'personen'}</option>`);
+  }
+  opts.push('<option value="16+">16 of meer personen</option>');
+  sel.innerHTML = opts.join('');
+  sel.value = '2';
+  sel.addEventListener('change', () => {
+    const notice = document.getElementById('largePartyNotice');
+    if (notice) notice.style.display = sel.value === '16+' ? '' : 'none';
+  });
+}
+
+function isValidPhone(raw) {
+  const stripped = raw.replace(/[\s\-\.\(\)\/]/g, '');
+  return /^\+?[0-9]{7,15}$/.test(stripped);
+}
+
+function isValidEmail(v) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+}
+
+function initRPhoneValidation() {
+  const tel   = document.getElementById('rTel');
+  const email = document.getElementById('rEmail');
+  if (tel) {
+    tel.addEventListener('blur',  () => { if (tel.value.trim()) validateRTel(); });
+    tel.addEventListener('input', clearRTelError);
+  }
+  if (email) {
+    email.addEventListener('blur',  () => { if (email.value.trim()) validateREmail(); });
+    email.addEventListener('input', clearREmailError);
+  }
+}
+
+function validateRTel() {
+  if (!isValidPhone(document.getElementById('rTel')?.value || '')) {
+    showRTelError('Voer een geldig telefoonnummer in (bijv. +31 6 12 34 56 78 of +44 7911 123456).');
+  }
+}
+
+function showRTelError(msg) {
+  const el = document.getElementById('rTelError');
+  if (el) { el.textContent = msg; el.style.display = ''; }
+  document.getElementById('rTel')?.classList.add('input-error');
+}
+
+function clearRTelError() {
+  const el = document.getElementById('rTelError');
+  if (el) el.style.display = 'none';
+  document.getElementById('rTel')?.classList.remove('input-error');
+}
+
+function validateREmail() {
+  if (!isValidEmail(document.getElementById('rEmail')?.value || '')) {
+    showREmailError('Voer een geldig e-mailadres in (bijv. naam@voorbeeld.nl).');
+  }
+}
+
+function showREmailError(msg) {
+  const el = document.getElementById('rEmailError');
+  if (el) { el.textContent = msg; el.style.display = ''; }
+  document.getElementById('rEmail')?.classList.add('input-error');
+}
+
+function clearREmailError() {
+  const el = document.getElementById('rEmailError');
+  if (el) el.style.display = 'none';
+  document.getElementById('rEmail')?.classList.remove('input-error');
+}
+
+async function submitReservation() {
+  const datum    = rSelectedDate;
+  const tijd     = document.getElementById('rTijd')?.value;
+  const personen = document.getElementById('rPersonen')?.value;
+  const naam     = document.getElementById('rNaam')?.value.trim();
+  const tel      = document.getElementById('rTel')?.value.trim();
+  const email    = document.getElementById('rEmail')?.value.trim();
+  const note     = document.getElementById('rNote')?.value.trim();
+  const errEl    = document.getElementById('rFormError');
+  const btn      = document.getElementById('rSubmitBtn');
+
+  if (!datum || !tijd || !personen || !naam || !tel || !email) {
+    if (errEl) { errEl.textContent = 'Vul alle verplichte velden in.'; errEl.style.display = ''; }
+    return;
+  }
+
+  clearRTelError();
+  if (!isValidPhone(tel)) {
+    showRTelError('Voer een geldig telefoonnummer in (bijv. +31 6 12 34 56 78 of +44 7911 123456).');
+    document.getElementById('rTel')?.focus();
+    return;
+  }
+
+  clearREmailError();
+  if (!isValidEmail(email)) {
+    showREmailError('Voer een geldig e-mailadres in (bijv. naam@voorbeeld.nl).');
+    document.getElementById('rEmail')?.focus();
+    return;
+  }
+
+  if (errEl) errEl.style.display = 'none';
+
+  const dateLabel   = new Date(datum).toLocaleDateString('nl-NL', {
+    timeZone: 'Europe/Amsterdam', weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+  });
+  const isLarge     = personen === '16+';
+  const personLabel = isLarge
+    ? '16 of meer personen'
+    : `${personen} ${parseInt(personen) === 1 ? 'persoon' : 'personen'}`;
+
+  if (btn) { btn.disabled = true; btn.textContent = 'Bezig...'; }
+
+  try {
+    const res = await fetch('/api/reservation', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ datum, tijd, personen, naam, tel, email, note: note || '', restaurantNaam: BRAND.name }),
+    });
+    if (!res.ok) throw new Error();
+
+    const confirmBody = document.getElementById('rConfirmBody');
+    if (confirmBody) {
+      confirmBody.innerHTML = isLarge
+        ? `Uw aanvraag voor <strong>${personLabel}</strong> is ontvangen.<br>Wij nemen persoonlijk contact op per e-mail om de details te bespreken.`
+        : `Uw tafel voor <strong>${personLabel}</strong> op <strong>${dateLabel}</strong> om <strong>${tijd}</strong> is aangevraagd.<br>U ontvangt zo spoedig mogelijk een bevestiging per e-mail.`;
+    }
+
+    document.getElementById('reservModalForm').style.display    = 'none';
+    document.getElementById('reservModalConfirm').style.display = '';
+    document.getElementById('reservPanel')?.scrollTo({ top: 0, behavior: 'smooth' });
+
+  } catch {
+    if (errEl) { errEl.textContent = 'Er is een fout opgetreden. Probeer het opnieuw.'; errEl.style.display = ''; }
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = 'Reservering aanvragen →'; }
+  }
+}
+
+function resetReservModal() {
+  document.getElementById('reservModalForm').style.display    = '';
+  document.getElementById('reservModalConfirm').style.display = 'none';
+
+  const p   = getRDateParts(new Date());
+  rCalYear  = p.year;
+  rCalMonth = p.month;
+  rSelectedDate = getFirstAvailableReservDate();
+  updateRCalTriggerLabel();
+  populateTimeSlots();
+
+  const personEl = document.getElementById('rPersonen');
+  if (personEl) personEl.value = '2';
+  document.getElementById('largePartyNotice')?.style && (document.getElementById('largePartyNotice').style.display = 'none');
+
+  ['rNaam', 'rTel', 'rEmail', 'rNote'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  clearRTelError();
+  clearREmailError();
+  document.getElementById('reservPanel')?.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* Mobile nav */
+function closeMobileNav() {
+  document.getElementById('mobileMenu')?.classList.remove('open');
+}
+
+function toggleMobileNav() {
+  document.getElementById('mobileMenu')?.classList.toggle('open');
+}
+
+function initMobileNav() {
+  /* Close on scroll */
+  window.addEventListener('scroll', closeMobileNav, { passive: true });
+
+  /* Close on click outside */
+  document.addEventListener('click', e => {
+    if (!document.getElementById('mobileMenu')?.classList.contains('open')) return;
+    if (!e.target.closest('#mobileMenu') && !e.target.closest('.nav-hamburger')) closeMobileNav();
+  });
+}
+</script>
+
+</body>
+</html>

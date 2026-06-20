@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<link id="favicon" rel="icon" type="image/png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacybeleid — Restaurant Naam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=block" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  .privacy-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 80px 24px 100px;
+  }
+
+  .privacy-wrap h1 {
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    font-weight: 900;
+    letter-spacing: -.03em;
+    margin-bottom: 8px;
+  }
+
+  .privacy-meta {
+    font-size: .875rem;
+    color: var(--grey-500);
+    margin-bottom: 48px;
+  }
+
+  .privacy-wrap h2 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--primary);
+    display: inline-block;
+  }
+
+  .privacy-wrap p {
+    font-size: .95rem;
+    line-height: 1.8;
+    color: var(--grey-700, #444);
+    margin-bottom: 14px;
+  }
+
+  .privacy-wrap ul {
+    margin: 0 0 14px 20px;
+    font-size: .95rem;
+    line-height: 1.8;
+    color: var(--grey-700, #444);
+  }
+
+  .privacy-wrap ul li { margin-bottom: 4px; }
+
+  .privacy-wrap a { color: var(--primary); }
+
+  .privacy-wrap table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .875rem;
+    margin-bottom: 14px;
+  }
+
+  .privacy-wrap table th {
+    background: var(--grey-100, #f5f5f5);
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 700;
+    border: 1px solid var(--grey-200, #e0e0e0);
+  }
+
+  .privacy-wrap table td {
+    padding: 10px 14px;
+    border: 1px solid var(--grey-200, #e0e0e0);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav solid" id="siteNav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img class="nav-logo-img" src="" alt="Logo" style="display:none">
+      <div>
+        <div class="nav-logo-text" data-brand="name"></div>
+        <div class="nav-logo-sub" data-brand="tagline"></div>
+      </div>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="order.html">Bestellen</a>
+    </nav>
+  </div>
+</nav>
+
+<div class="privacy-wrap">
+
+  <h1>Privacybeleid</h1>
+  <p class="privacy-meta">Laatst bijgewerkt: <span id="privacyDate"></span></p>
+
+  <p>
+    <span data-brand="name">Restaurant Naam</span> hecht grote waarde aan de bescherming van uw persoonsgegevens.
+    In dit privacybeleid leggen wij uit welke gegevens wij verzamelen, waarom wij dat doen,
+    hoe lang wij ze bewaren en welke rechten u heeft.
+  </p>
+
+  <!-- 1. Verwerkingsverantwoordelijke -->
+  <h2>1. Verwerkingsverantwoordelijke</h2>
+  <p>
+    De verwerkingsverantwoordelijke voor uw persoonsgegevens is:
+  </p>
+  <p>
+    <strong data-brand="name">Restaurant Naam</strong><br>
+    <span id="privacyAddress"></span><br>
+    E-mail: <a id="privacyEmail" href="#">info@uwrestaurant.nl</a><br>
+    Telefoon: <span data-brand="phone">+31 6 00 00 00 00</span>
+  </p>
+
+  <!-- 2. Welke gegevens verzamelen wij -->
+  <h2>2. Welke gegevens verzamelen wij?</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Gegeven</th>
+        <th>Wanneer</th>
+        <th>Doel</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Naam</td>
+        <td>Bij plaatsen van een bestelling of reservering</td>
+        <td>Identificatie en communicatie over uw bestelling</td>
+      </tr>
+      <tr>
+        <td>Telefoonnummer</td>
+        <td>Bij plaatsen van een bestelling of reservering</td>
+        <td>Contact opnemen bij vragen over uw bestelling of reservering</td>
+      </tr>
+      <tr>
+        <td>E-mailadres</td>
+        <td>Bij plaatsen van een bestelling of reservering</td>
+        <td>Bevestiging van uw bestelling of reservering, en contact bij vragen</td>
+      </tr>
+      <tr>
+        <td>Bezorgadres</td>
+        <td>Bij plaatsen van een bezorgbestelling</td>
+        <td>Uitvoering van de bezorging</td>
+      </tr>
+      <tr>
+        <td>Betalingsinformatie</td>
+        <td>Bij online betaling via iDEAL of kaart</td>
+        <td>Verwerking van de betaling — uitsluitend verwerkt door Stripe, niet door ons</td>
+      </tr>
+      <tr>
+        <td>IP-adres en technische gegevens</td>
+        <td>Bij elk bezoek aan de website</td>
+        <td>Beveiliging en technische werking van de website (verwerkt door Cloudflare)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 3. Grondslag -->
+  <h2>3. Grondslag voor verwerking</h2>
+  <p>Wij verwerken uw persoonsgegevens op basis van de volgende rechtsgronden:</p>
+  <ul>
+    <li><strong>Uitvoering van een overeenkomst</strong> — uw naam, contactgegevens en bezorgadres zijn noodzakelijk om uw bestelling of reservering te kunnen verwerken en uitvoeren (artikel 6 lid 1 sub b AVG).</li>
+    <li><strong>Gerechtvaardigd belang</strong> — technische gegevens zoals uw IP-adres worden verwerkt door onze hostingpartner Cloudflare ter beveiliging van de website (artikel 6 lid 1 sub f AVG).</li>
+  </ul>
+
+  <!-- 4. Derden -->
+  <h2>4. Derden en verwerkers</h2>
+  <p>Wij delen uw gegevens uitsluitend met de volgende partijen, voor zover noodzakelijk:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Partij</th>
+        <th>Doel</th>
+        <th>Privacybeleid</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Stripe</strong></td>
+        <td>Verwerking van online betalingen (iDEAL, kaart). Uw betalingsgegevens worden direct en uitsluitend door Stripe verwerkt. Wij zien nooit uw volledige betaalgegevens.</td>
+        <td><a href="https://stripe.com/nl/privacy" target="_blank" rel="noopener">stripe.com/nl/privacy</a></td>
+      </tr>
+      <tr>
+        <td><strong>Cloudflare</strong></td>
+        <td>Hosting en beveiliging van de website. Cloudflare verwerkt technische gegevens zoals IP-adressen ter bescherming tegen aanvallen.</td>
+        <td><a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a></td>
+      </tr>
+    </tbody>
+  </table>
+  <p>Wij verkopen uw persoonsgegevens nooit aan derden en delen ze niet voor marketing- of reclamedoeleinden.</p>
+
+  <!-- 5. Bewaartermijn -->
+  <h2>5. Bewaartermijn</h2>
+  <p>
+    Bestel- en betalingsgegevens worden bewaard zolang als fiscaal en wettelijk vereist is — in Nederland doorgaans <strong>7 jaar</strong> op grond van de bewaarplicht voor de Belastingdienst.
+    Reserveringsgegevens bewaren wij maximaal <strong>1 jaar</strong> na de reserveringsdatum, tenzij u eerder om verwijdering verzoekt.
+  </p>
+
+  <!-- 6. Cookies en lokale opslag -->
+  <h2>6. Cookies en lokale opslag</h2>
+  <p>
+    Deze website maakt geen gebruik van tracking- of analytische cookies. Wij gebruiken uitsluitend:
+  </p>
+  <ul>
+    <li><strong>Functionele lokale opslag (localStorage)</strong> — uw contactgegevens (naam, telefoonnummer, e-mailadres en bezorgadres) worden tijdelijk opgeslagen in uw eigen browser, zodat u deze bij een volgend bezoek niet opnieuw hoeft in te voeren. Deze gegevens verlaten uw apparaat niet en zijn voor ons niet zichtbaar. U kunt ze op elk moment verwijderen via de instellingen van uw browser.</li>
+    <li><strong>Winkelmandje (localStorage)</strong> — uw geselecteerde gerechten worden tijdelijk opgeslagen in uw browser zodat uw winkelmandje behouden blijft bij het herladen van de pagina.</li>
+    <li><strong>Stripe-cookies</strong> — bij het afrekenen plaatst Stripe functionele cookies ten behoeve van fraude­detectie en een veilige betaalomgeving. Deze zijn noodzakelijk voor het uitvoeren van de betaling.</li>
+    <li><strong>Cloudflare-cookies</strong> — onze hostingpartner Cloudflare plaatst technische cookies voor beveiliging en prestaties van de website.</li>
+  </ul>
+  <p>Voor bovenstaande cookies en lokale opslag is geen toestemming vereist, omdat ze uitsluitend worden gebruikt voor de technische werking van de website en de uitvoering van uw bestelling.</p>
+
+  <!-- 7. Uw rechten -->
+  <h2>7. Uw rechten</h2>
+  <p>Op grond van de Algemene Verordening Gegevensbescherming (AVG) heeft u de volgende rechten:</p>
+  <ul>
+    <li><strong>Recht op inzage</strong> — u kunt opvragen welke persoonsgegevens wij van u hebben.</li>
+    <li><strong>Recht op rectificatie</strong> — u kunt onjuiste gegevens laten corrigeren.</li>
+    <li><strong>Recht op verwijdering</strong> — u kunt verzoeken uw gegevens te laten verwijderen, voor zover dit niet in strijd is met een wettelijke bewaarplicht.</li>
+    <li><strong>Recht op beperking</strong> — u kunt verzoeken de verwerking van uw gegevens te beperken.</li>
+    <li><strong>Recht op overdraagbaarheid</strong> — u kunt verzoeken uw gegevens in een gestructureerd, gangbaar formaat te ontvangen.</li>
+    <li><strong>Recht van bezwaar</strong> — u kunt bezwaar maken tegen de verwerking van uw gegevens op grond van gerechtvaardigd belang.</li>
+  </ul>
+  <p>
+    Om een verzoek in te dienen kunt u contact met ons opnemen via <a id="privacyEmailRights" href="#">info@uwrestaurant.nl</a>.
+    Wij reageren binnen 30 dagen op uw verzoek.
+  </p>
+
+  <!-- 8. Toezichthouder -->
+  <h2>8. Toezichthouder</h2>
+  <p>
+    Bent u van mening dat wij uw persoonsgegevens niet op de juiste manier verwerken? Dan heeft u het recht een klacht in te dienen bij de Nederlandse toezichthouder:
+  </p>
+  <p>
+    <strong>Autoriteit Persoonsgegevens</strong><br>
+    Postbus 93374, 2509 AJ Den Haag<br>
+    <a href="https://www.autoriteitpersoonsgegevens.nl" target="_blank" rel="noopener">autoriteitpersoonsgegevens.nl</a>
+  </p>
+
+  <!-- 9. Wijzigingen -->
+  <h2>9. Wijzigingen in dit beleid</h2>
+  <p>
+    Wij kunnen dit privacybeleid van tijd tot tijd aanpassen. De meest actuele versie is altijd te vinden op deze pagina.
+    Raadpleeg deze pagina regelmatig om op de hoogte te blijven van eventuele wijzigingen.
+  </p>
+
+</div>
+
+<script src="assets/js/config.js"></script>
+<script>
+  /* Brand injection */
+  document.querySelectorAll('[data-brand="name"]').forEach(el => el.textContent = BRAND.name);
+  document.querySelectorAll('[data-brand="tagline"]').forEach(el => el.textContent = BRAND.tagline);
+  document.querySelectorAll('[data-brand="phone"]').forEach(el => el.textContent = BRAND.phone);
+
+  const logoImg = document.querySelector('.nav-logo-img');
+  if (BRAND.logo_img && logoImg) {
+    logoImg.src = BRAND.logo_img;
+    logoImg.style.display = '';
+    document.getElementById('favicon').href = BRAND.logo_img;
+  }
+
+  /* Address */
+  const addrEl = document.getElementById('privacyAddress');
+  if (addrEl) addrEl.textContent = `${BRAND.address.street}, ${BRAND.address.postal} ${BRAND.address.city}`;
+
+  /* Email links */
+  ['privacyEmail','privacyEmailRights'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.href = `mailto:${BRAND.email}`; el.textContent = BRAND.email; }
+  });
+
+  /* Last updated date */
+  const dateEl = document.getElementById('privacyDate');
+  if (dateEl) {
+    dateEl.textContent = new Date().toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+</script>
+</body>
+</html>

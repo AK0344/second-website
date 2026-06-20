@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "web-template-restaurant-nl",
+  "compatibility_date": "2026-06-01",
+  "main": "_worker.js",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "."
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  // KV namespace for reservation storage (local dev only).
+  // For production: Cloudflare Pages → Settings → Functions → KV namespace bindings
+  // Binding name: RESERVATIONS_KV — create the namespace in Workers & Pages → KV first.
+  "kv_namespaces": [
+    { "binding": "RESERVATIONS_KV", "id": "fa8c90f2ae954ac79509716ba87a7644" }
+  ]
+}

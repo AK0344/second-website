@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<link id="favicon" rel="icon" type="image/png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bedankt voor uw bestelling — Restaurant Naam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=block" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js" defer></script>
+</head>
+<body>
+
+<nav class="site-nav solid" id="siteNav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img class="nav-logo-img" src="" alt="Logo" style="display:none">
+      <div>
+        <div class="nav-logo-text" data-brand="name"></div>
+        <div class="nav-logo-sub" data-brand="tagline"></div>
+      </div>
+    </a>
+  </div>
+</nav>
+
+<div class="bedankt-wrap">
+  <div class="bedankt-card">
+    <div class="bedankt-icon"><iconify-icon icon="ph:check-circle" width="64" height="64" aria-hidden="true"></iconify-icon></div>
+    <h1 class="bedankt-title" id="bedanktTitle">Betaling ontvangen!</h1>
+    <p class="bedankt-body" id="bedanktBody">
+      Uw bestelling is ontvangen en wij gaan direct aan de slag.
+    </p>
+    <p id="bedanktContact" style="margin-top:6px;font-size:.9rem;color:var(--grey-500)"></p>
+    <a class="btn btn-primary btn-lg" href="order.html" style="margin-top:28px">
+      Nieuwe bestelling
+    </a>
+    <a class="btn btn-outline-dark" href="index.html" style="margin-top:12px">
+      Terug naar homepage
+    </a>
+  </div>
+</div>
+
+<script src="assets/js/config.js"></script>
+<script>
+  document.querySelectorAll('[data-brand="name"]').forEach(el => el.textContent = BRAND.name);
+  document.querySelectorAll('[data-brand="tagline"]').forEach(el => el.textContent = BRAND.tagline);
+  const logoImg = document.querySelector('.nav-logo-img');
+  if (BRAND.logo_img && logoImg) {
+    logoImg.src = BRAND.logo_img;
+    logoImg.style.display = '';
+    document.getElementById('favicon').href = BRAND.logo_img;
+  }
+
+  /* Only clear cart and personalise when arriving from a real Stripe redirect */
+  const params = new URLSearchParams(window.location.search);
+  if (params.has('session_id')) {
+    try { localStorage.removeItem('restaurant_cart'); } catch {}
+
+    /* Clear the note but keep personal details for next order */
+    try {
+      const FIELDS_KEY = 'restaurant_checkout_fields';
+      const saved = JSON.parse(localStorage.getItem(FIELDS_KEY) || '{}');
+      localStorage.setItem(FIELDS_KEY, JSON.stringify({
+        naam:  saved.naam  || '',
+        tel:   saved.tel   || '',
+        email: saved.email || '',
+        adres: saved.adres || '',
+        addr:  saved.addr  || null,
+        note:  '',
+      }));
+    } catch {}
+
+    let meta = {};
+    try {
+      meta = JSON.parse(localStorage.getItem('restaurant_order_meta') || '{}');
+      localStorage.removeItem('restaurant_order_meta');
+    } catch {}
+
+    const cfg        = BRAND.scheduling || {};
+    const isPickup   = meta.fulfillMethod === 'pickup';
+    const scheduled  = meta.scheduledTime && meta.scheduledTime !== 'asap';
+    const naam       = meta.naam ? `, ${meta.naam}` : '';
+
+    const titleEl   = document.getElementById('bedanktTitle');
+    const bodyEl    = document.getElementById('bedanktBody');
+    const contactEl = document.getElementById('bedanktContact');
+
+    if (titleEl) titleEl.textContent = `Bedankt${naam}!`;
+
+    if (bodyEl) {
+      if (scheduled) {
+        bodyEl.innerHTML = `Uw bestelling is ingepland. Wij zorgen ervoor dat alles op tijd klaarstaat.`;
+      } else if (isPickup) {
+        const prep = cfg.pickup_prep_min ?? 20;
+        bodyEl.innerHTML = `Uw bestelling is ontvangen. U kunt afhalen over ongeveer <strong>${prep} minuten</strong> op ons adres.`;
+      } else {
+        const prep = cfg.delivery_prep_min ?? 35;
+        bodyEl.innerHTML = `Uw bestelling is ontvangen en wordt bezorgd over ongeveer <strong>${prep}&nbsp;minuten</strong>.`;
+      }
+    }
+
+    if (contactEl && BRAND.phone) {
+      const tel = BRAND.phone.replace(/\s/g, '');
+      contactEl.innerHTML = `Vragen? Bel ons op <a href="tel:${tel}" style="color:var(--primary);font-weight:700">${BRAND.phone}</a>.`;
+    }
+  }
+</script>
+</body>
+</html>

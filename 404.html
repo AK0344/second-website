@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<link id="favicon" rel="icon" type="image/png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pagina niet gevonden — Restaurant Naam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=block" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav class="site-nav solid" id="siteNav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img class="nav-logo-img" src="" alt="Logo" style="display:none">
+      <div>
+        <div class="nav-logo-text" data-brand="name"></div>
+        <div class="nav-logo-sub" data-brand="tagline"></div>
+      </div>
+    </a>
+  </div>
+</nav>
+
+<div class="bedankt-wrap">
+  <div class="bedankt-card">
+    <div class="bedankt-icon"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+    <h1 class="bedankt-title">Pagina niet gevonden</h1>
+    <p class="bedankt-body">
+      De pagina die u zoekt bestaat niet of is verplaatst.
+    </p>
+    <a class="btn btn-primary btn-lg" href="index.html" style="margin-top:28px">
+      Terug naar homepage
+    </a>
+    <a class="btn btn-outline-dark" href="order.html" style="margin-top:12px">
+      Bekijk ons menu
+    </a>
+  </div>
+</div>
+
+<script src="assets/js/config.js"></script>
+<script>
+  document.querySelectorAll('[data-brand="name"]').forEach(el => el.textContent = BRAND.name);
+  document.querySelectorAll('[data-brand="tagline"]').forEach(el => el.textContent = BRAND.tagline);
+  const logoImg = document.querySelector('.nav-logo-img');
+  if (BRAND.logo_img && logoImg) {
+    logoImg.src = BRAND.logo_img;
+    logoImg.style.display = '';
+    document.getElementById('favicon').href = BRAND.logo_img;
+  }
+</script>
+</body>
+</html>

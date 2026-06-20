@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<link id="favicon" rel="icon" type="image/png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- EDIT: title -->
+<title>Bestellen — Restaurant Naam</title>
+<meta name="description" content="Bestel direct online bij Restaurant Naam. Geen platformkosten.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=block" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js" defer></script>
+</head>
+
+<body>
+
+<!-- ============================================================
+     NAVIGATION — solid (no transparent hero on this page)
+============================================================ -->
+<nav class="site-nav solid" id="siteNav">
+  <div class="nav-inner">
+
+    <a href="index.html" class="nav-logo">
+      <img class="nav-logo-img" src="" alt="Logo" style="display:none">
+      <div>
+        <div class="nav-logo-text" data-brand="name"></div>
+        <div class="nav-logo-sub" data-brand="tagline"></div>
+      </div>
+    </a>
+
+    <div class="nav-links">
+      <a class="nav-link" href="index.html#menu">Menu</a>
+      <a class="nav-link" href="index.html#about">Over Ons</a>
+      <a class="nav-link" href="index.html#gallery">Galerij</a>
+      <a class="nav-link" href="index.html#contact">Contact</a>
+    </div>
+
+    <div class="nav-actions">
+      <a class="nav-phone" id="navPhone" href="tel:+3100000000" aria-label="Bel ons">
+        <span class="nav-phone-icon"><iconify-icon icon="ph:phone" width="15" height="15" aria-hidden="true"></iconify-icon></span>
+        <span class="nav-phone-num">+31 00 000 0000</span>
+      </a>
+      <!-- Cart button: shows item count badge, scrolls to cart sidebar on desktop -->
+      <button class="nav-cart-btn cart-anim" onclick="onCartBtnClick()" aria-label="Winkelwagen">
+        <iconify-icon icon="ph:shopping-bag" width="20" height="20" aria-hidden="true"></iconify-icon>
+        <span class="cart-badge" data-cart-count style="display:none">0</span>
+      </button>
+      <button class="nav-hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+</nav>
+
+<!-- Mobile nav -->
+<div class="mobile-nav" id="mobileMenu">
+  <a class="nav-link" href="index.html#menu"    onclick="toggleMobileNav()">Menu</a>
+  <a class="nav-link" href="index.html#about"   onclick="toggleMobileNav()">Over Ons</a>
+  <a class="nav-link" href="index.html#gallery" onclick="toggleMobileNav()">Galerij</a>
+  <a class="nav-link" href="index.html#contact"  onclick="toggleMobileNav()">Contact</a>
+  <a class="btn btn-outline btn-full" id="mobileNavPhone" href="tel:+3100000000" onclick="toggleMobileNav()" style="margin-top:12px;display:flex;align-items:center;justify-content:center;gap:7px"><iconify-icon icon="ph:phone" width="14" height="14" aria-hidden="true"></iconify-icon> Bel Ons</a>
+</div>
+
+<!-- ============================================================
+     ORDER PAGE LAYOUT
+     Desktop:  [category sidebar] [menu content] [cart sidebar]
+     Tablet/Mobile: horizontal tabs + floating cart bar
+============================================================ -->
+
+<!-- MOBILE CATEGORY TABS (hidden on desktop) -->
+<div class="mobile-tabs-wrap">
+  <div class="mobile-tabs" id="mobileTabs">
+    <!-- Populated by order.js -->
+  </div>
+</div>
+
+<!-- ============================================================
+     CLOSED BANNER — shown by JS when outside opening hours
+============================================================ -->
+<div class="closed-banner" id="closedBanner" style="display:none">
+  <div class="closed-inner">
+    <span class="closed-icon"><iconify-icon icon="ph:clock" width="20" height="20" aria-hidden="true"></iconify-icon></span>
+    <div>
+      <strong class="closed-title">We zijn momenteel gesloten, maar u kunt nog een bestelling inplannen</strong>
+      <span class="closed-msg" id="closedMsg"></span>
+    </div>
+  </div>
+</div>
+
+<div class="order-layout">
+
+  <!-- ── LEFT: CATEGORY SIDEBAR (desktop only) ─────────────── -->
+  <aside class="cat-sidebar">
+    <div class="cat-sidebar-label">Categorieën</div>
+    <div id="catSidebar">
+      <!-- Populated by order.js -->
+    </div>
+  </aside>
+
+  <!-- ── CENTER: MENU ITEMS ────────────────────────────────── -->
+  <main class="menu-content-area">
+    <div id="menuContent">
+      <!-- Populated by order.js -->
+    </div>
+  </main>
+
+  <!-- ── RIGHT: CART SIDEBAR (desktop only) ────────────────── -->
+  <aside class="cart-sidebar">
+
+    <div class="cart-sidebar-hdr">
+      <iconify-icon icon="ph:shopping-bag" width="18" height="18" aria-hidden="true" style="vertical-align:-3px"></iconify-icon>
+      Uw bestelling
+    </div>
+
+    <div class="cart-sidebar-body">
+      <!-- Empty state -->
+      <div class="cart-empty-state" data-cart-empty>
+        <div class="cart-empty-icon"><iconify-icon icon="ph:shopping-bag" width="40" height="40" aria-hidden="true"></iconify-icon></div>
+        <div class="cart-empty-text">Voeg gerechten toe<br>om te beginnen</div>
+      </div>
+
+      <!-- Item rows -->
+      <div data-cart-filled style="display:none">
+        <div id="cartItems"></div>
+      </div>
+    </div>
+
+    <div class="cart-sidebar-ftr">
+      <div data-cart-filled style="display:none">
+        <div class="cart-total-row">
+          <span class="cart-total-label">Totaal</span>
+          <span class="cart-total-amount" data-cart-total>€ 0,00</span>
+        </div>
+        <div class="vat-note" data-cart-vat style="display:none"></div>
+        <div class="co-coupon-row" data-coupon-applied style="display:none">
+          <span class="co-coupon-lhs">
+            <span data-coupon-applied-label>Korting</span>
+            <button class="coupon-remove-btn" onclick="removeCoupon()">verwijderen</button>
+          </span>
+          <span data-coupon-applied-amt></span>
+        </div>
+        <div class="co-after-disc-row" data-coupon-after-disc style="display:none">
+          <span>Na korting</span>
+          <span data-coupon-after-disc-amt></span>
+        </div>
+        <div class="coupon-toggle-row" data-coupon-toggle>
+          <button class="coupon-link" onclick="toggleCouponInput('sidebar')">Kortingscode?</button>
+        </div>
+        <div class="coupon-field-row" id="couponFieldRow-sidebar" style="display:none">
+          <div class="coupon-field-inputs">
+            <input class="form-input" type="text" id="couponInput-sidebar"
+                   placeholder="Voer code in" autocomplete="off"
+                   autocapitalize="characters" spellcheck="false" enterkeyhint="go">
+            <button class="coupon-apply-btn" onclick="applyCoupon('sidebar')">Toepassen</button>
+          </div>
+          <div class="field-error" id="couponError-sidebar" style="display:none"></div>
+        </div>
+      </div>
+
+      <div class="min-warn" data-min-warn style="display:none"></div>
+
+      <button class="btn btn-primary btn-full" data-order-btn onclick="openCheckout()" disabled>
+        Bestellen →
+      </button>
+    </div>
+
+  </aside>
+
+</div><!-- /.order-layout -->
+
+<!-- ============================================================
+     FLOATING CART BAR (mobile / tablet)
+============================================================ -->
+<div class="float-bar" id="floatBar" onclick="openDrawer()">
+  <div class="fb-left">
+    <div class="fb-badge" id="fbCount">0</div>
+    <span class="fb-label">Bekijk bestelling</span>
+  </div>
+  <span class="fb-price" id="fbPrice">€ 0,00</span>
+</div>
+
+<!-- ============================================================
+     CART DRAWER (mobile / tablet)
+============================================================ -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+
+<div class="cart-drawer" id="cartDrawer">
+  <div class="drawer-handle"></div>
+  <div class="drawer-hdr">
+    <span class="drawer-title">
+      <iconify-icon icon="ph:shopping-bag" width="18" height="18" aria-hidden="true" style="vertical-align:-3px"></iconify-icon>
+      Uw bestelling
+    </span>
+    <button class="drawer-close" onclick="closeDrawer()">✕</button>
+  </div>
+  <div class="drawer-body">
+    <div class="cart-empty-state" data-cart-empty style="height:auto; padding:32px 0;">
+      <div class="cart-empty-icon"><iconify-icon icon="ph:shopping-bag" width="40" height="40" aria-hidden="true"></iconify-icon></div>
+      <div class="cart-empty-text">Uw winkelwagen is leeg</div>
+    </div>
+    <div data-cart-filled style="display:none">
+      <div id="drawerItems"></div>
+    </div>
+  </div>
+  <div class="drawer-ftr">
+    <div class="cart-total-row">
+      <span class="cart-total-label">Totaal</span>
+      <span class="cart-total-amount" data-cart-total>€ 0,00</span>
+    </div>
+    <div class="vat-note" data-cart-vat style="display:none"></div>
+    <div class="co-coupon-row" data-coupon-applied style="display:none">
+      <span class="co-coupon-lhs">
+        <span data-coupon-applied-label>Korting</span>
+        <button class="coupon-remove-btn" onclick="removeCoupon()">verwijderen</button>
+      </span>
+      <span data-coupon-applied-amt></span>
+    </div>
+    <div class="co-after-disc-row" data-coupon-after-disc style="display:none">
+      <span>Na korting</span>
+      <span data-coupon-after-disc-amt></span>
+    </div>
+    <div class="coupon-toggle-row" data-coupon-toggle>
+      <button class="coupon-link" onclick="toggleCouponInput('drawer')">Kortingscode?</button>
+    </div>
+    <div class="coupon-field-row" id="couponFieldRow-drawer" style="display:none">
+      <div class="coupon-field-inputs">
+        <input class="form-input" type="text" id="couponInput-drawer"
+               placeholder="Voer code in" autocomplete="off"
+               autocapitalize="characters" spellcheck="false" enterkeyhint="go">
+        <button class="coupon-apply-btn" onclick="applyCoupon('drawer')">Toepassen</button>
+      </div>
+      <div class="field-error" id="couponError-drawer" style="display:none"></div>
+    </div>
+    <div class="min-warn" data-min-warn style="display:none"></div>
+    <button class="btn btn-primary btn-full" data-order-btn onclick="openCheckout()" disabled>
+      Bestellen →
+    </button>
+  </div>
+</div>
+
+<!-- ============================================================
+     CHECKOUT MODAL
+     Centered on desktop, full-screen on mobile.
+============================================================ -->
+<div class="modal-overlay" id="checkoutOverlay" onclick="handleOverlayClick(event)">
+  <div class="checkout-modal" id="checkoutModal">
+
+    <div class="co-hdr">
+      <button class="co-back" onclick="closeCheckout()">←</button>
+      <span class="co-title">Afrekenen</span>
+    </div>
+
+    <div class="co-body">
+
+      <!-- Closed notice: visible when store is closed and order is scheduled -->
+      <div class="co-closed-notice" id="coClosedNotice" style="display:none">
+        <iconify-icon icon="ph:clock" width="18" height="18" aria-hidden="true" style="flex-shrink:0"></iconify-icon>
+        <span>We zijn momenteel gesloten, maar u kunt nog een bestelling inplannen voor een later tijdstip.</span>
+      </div>
+
+      <!-- Order summary -->
+      <div class="co-section-lbl">Uw bestelling</div>
+      <div id="coSummary"></div>
+      <div class="co-total-row">
+        <span>Totaal</span>
+        <span id="coTotal" style="color:var(--primary)">€ 0,00</span>
+      </div>
+      <div class="vat-note" id="coVatRow" style="display:none"></div>
+
+      <!-- Coupon: applied at cart stage, displayed here read-only -->
+      <div class="co-coupon-row" data-coupon-applied style="display:none">
+        <span class="co-coupon-lhs">
+          <span data-coupon-applied-label>Korting</span>
+        </span>
+        <span data-coupon-applied-amt></span>
+      </div>
+      <div class="co-after-disc-row" data-coupon-after-disc style="display:none">
+        <span>Na korting</span>
+        <span data-coupon-after-disc-amt></span>
+      </div>
+
+      <!-- Tip -->
+      <div class="co-section-lbl" style="margin-top:18px">Fooi <span class="tip-lbl-note">(optioneel · BTW-vrij)</span></div>
+      <div class="tip-btns" id="tipBtns"></div>
+      <div class="form-group" id="tipCustomWrap" style="display:none; margin-bottom:4px">
+        <input class="form-input" type="number" id="tipCustom" min="0" step="0.50" placeholder="Eigen bedrag in €" inputmode="decimal">
+      </div>
+      <div class="co-tip-row" id="coTipRow" style="display:none">
+        <span>Fooi</span>
+        <span id="coTipAmt"></span>
+      </div>
+      <div class="co-grand-row" id="coGrandRow" style="display:none">
+        <span>Te betalen</span>
+        <span id="coGrand"></span>
+      </div>
+
+      <!-- Fulfillment: delivery or pickup -->
+      <div class="co-section-lbl">Bezorgwijze</div>
+      <div class="pay-options">
+        <div class="pay-opt selected" id="fOptDelivery" onclick="selectFulfillment('delivery')">
+          <div class="pay-radio"><div class="pay-dot"></div></div>
+          <div class="pay-icon"><iconify-icon icon="ph:moped" width="22" height="22" aria-hidden="true"></iconify-icon></div>
+          <div>
+            <div class="pay-name">Bezorgen</div>
+            <div class="pay-desc">Wij bezorgen bij u thuis</div>
+          </div>
+        </div>
+        <div class="pay-opt" id="fOptPickup" onclick="selectFulfillment('pickup')">
+          <div class="pay-radio"><div class="pay-dot"></div></div>
+          <div class="pay-icon"><iconify-icon icon="ph:house-line" width="22" height="22" aria-hidden="true"></iconify-icon></div>
+          <div>
+            <div class="pay-name">Afhalen</div>
+            <div class="pay-desc" id="pickupAddrLine">Adres wordt ingeladen…</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Delivery timing: ASAP or Scheduled -->
+      <div class="co-section-lbl">Gewenste tijd</div>
+      <div class="pay-options" id="timingOpts">
+        <div class="pay-opt selected" id="tOptAsap" onclick="selectTiming('asap')">
+          <div class="pay-radio"><div class="pay-dot"></div></div>
+          <div class="pay-icon"><iconify-icon icon="ph:lightning" width="22" height="22" aria-hidden="true"></iconify-icon></div>
+          <div>
+            <div class="pay-name">Zo snel mogelijk</div>
+            <div class="pay-desc" id="asapDesc">~35 min</div>
+          </div>
+        </div>
+        <div class="pay-opt" id="tOptScheduled" onclick="selectTiming('scheduled')">
+          <div class="pay-radio"><div class="pay-dot"></div></div>
+          <div class="pay-icon"><iconify-icon icon="ph:calendar" width="22" height="22" aria-hidden="true"></iconify-icon></div>
+          <div>
+            <div class="pay-name">Later inplannen</div>
+            <div class="pay-desc">Kies datum en tijdstip</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scheduled section: date trigger + time slot (shown when scheduled is selected) -->
+      <div id="scheduledSection" style="display:none">
+        <!-- Date popup trigger (hidden when max_days_ahead = 0) -->
+        <div class="cal-field" id="calField" style="display:none">
+          <button class="form-input cal-trigger" id="calTrigger" type="button" onclick="toggleCalPopup()">
+            <span id="calTriggerLabel">Kies een datum</span>
+            <iconify-icon icon="ph:calendar" width="15" height="15" aria-hidden="true"></iconify-icon>
+          </button>
+          <div class="cal-popup" id="calPopup" style="display:none">
+            <div id="calWrap"></div>
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:10px">
+          <select class="form-input" id="fTijd"></select>
+          <div class="field-error" id="timeError" style="display:none"></div>
+        </div>
+      </div>
+
+      <!-- Customer details -->
+      <div class="co-section-lbl">Uw gegevens</div>
+      <div class="form-group">
+        <label class="form-label" for="fNaam">Naam *</label>
+        <input class="form-input" type="text" id="fNaam"
+               placeholder="Uw volledige naam" autocomplete="name"
+               enterkeyhint="next">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="fTel">Telefoonnummer *</label>
+        <input class="form-input" type="tel" id="fTel"
+               placeholder="+31 6 00 00 00 00" autocomplete="tel"
+               inputmode="tel" enterkeyhint="next">
+        <div class="field-error" id="telError" style="display:none"></div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="fEmail">E-mailadres *</label>
+        <input class="form-input" type="email" id="fEmail"
+               placeholder="uwmail@voorbeeld.nl" autocomplete="email"
+               inputmode="email" enterkeyhint="next">
+        <div class="field-error" id="emailError" style="display:none"></div>
+      </div>
+
+      <!-- Address: shown for delivery, hidden for pickup -->
+      <div class="form-group" id="addressRow">
+        <label class="form-label" for="fAdres">Bezorgadres *</label>
+        <div class="addr-autocomplete" id="addrAutocomplete">
+          <input class="form-input" type="text" id="fAdres"
+                 placeholder="Begin met typen (straat + nummer)…"
+                 autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+                 enterkeyhint="search">
+          <div class="addr-dropdown" id="addrDropdown" style="display:none"></div>
+        </div>
+        <div class="field-error" id="addrError" style="display:none"></div>
+      </div>
+
+      <!-- Pickup note: shown when pickup is selected -->
+      <div class="pickup-note" id="pickupNote" style="display:none">
+        <div style="display:flex;align-items:center;gap:5px"><iconify-icon icon="ph:map-pin" width="14" height="14" aria-hidden="true" style="flex-shrink:0;margin-top:2px"></iconify-icon><strong id="pickupAddrFull"></strong></div>
+        <div id="pickupWait"></div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="fNote">Opmerking (optioneel)</label>
+        <textarea class="form-input" id="fNote"
+                  placeholder="Bijv. extra saus, allergieën, verdieping..."></textarea>
+      </div>
+
+      <!-- Payment method -->
+      <div class="co-section-lbl">Betaalmethode</div>
+      <div class="pay-options">
+        <div class="pay-opt selected" id="payIdeal" onclick="selectPay('ideal')">
+          <div class="pay-radio"><div class="pay-dot"></div></div>
+          <div class="pay-icon"><iconify-icon icon="ph:bank" width="22" height="22" aria-hidden="true"></iconify-icon></div>
+          <div>
+            <div class="pay-name">iDEAL</div>
+            <div class="pay-desc">Direct bij uw bank betalen</div>
+          </div>
+        </div>
+        <div class="pay-opt" id="payCard" onclick="selectPay('card')">
+          <div class="pay-radio"><div class="pay-dot"></div></div>
+          <div class="pay-icon"><iconify-icon icon="ph:credit-card" width="22" height="22" aria-hidden="true"></iconify-icon></div>
+          <div>
+            <div class="pay-name">Kaart / Apple Pay</div>
+            <div class="pay-desc">Visa, Mastercard, Apple Pay</div>
+          </div>
+        </div>
+        <div class="pay-opt" id="payCash" onclick="selectPay('cash')">
+          <div class="pay-radio"><div class="pay-dot"></div></div>
+          <div class="pay-icon"><iconify-icon icon="ph:coins" width="22" height="22" aria-hidden="true"></iconify-icon></div>
+          <div>
+            <div class="pay-name" id="cashLabel">Contant bij bezorging</div>
+            <div class="pay-desc">Betaal wanneer u ontvangt of afhaalt</div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-full btn-lg" id="placeOrderBtn" onclick="placeOrder()">
+        Bestelling plaatsen
+      </button>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     CONFIRMATION SCREEN
+============================================================ -->
+<div class="confirm-screen" id="confirmScreen">
+  <div class="confirm-icon"><iconify-icon icon="ph:check-circle" width="64" height="64" aria-hidden="true"></iconify-icon></div>
+  <h2 class="confirm-title">Bedankt!</h2>
+  <p class="confirm-body">
+    Uw bestelling wordt bevestigd via WhatsApp.<br>
+    Wij nemen zo spoedig mogelijk contact op.
+  </p>
+  <div class="confirm-actions">
+    <button class="wa-btn" onclick="openWhatsApp()" style="display:inline-flex;align-items:center;gap:7px"><iconify-icon icon="ph:whatsapp-logo" width="16" height="16" aria-hidden="true"></iconify-icon> Open WhatsApp</button>
+    <button class="btn btn-outline-dark" onclick="newOrder()">Nieuwe bestelling</button>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/config.js"></script>
+<script src="assets/js/order.js"></script>
+
+<script>
+/* Page-level helpers that depend on both config.js and order.js */
+
+/* On desktop: clicking nav cart button scrolls to cart sidebar.
+   On mobile: it opens the drawer. */
+function onCartBtnClick() {
+  const isMobile = window.innerWidth < 1024;
+  if (isMobile) openDrawer();
+  else {
+    const sidebar = document.querySelector('.cart-sidebar');
+    if (sidebar) sidebar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+/* Close checkout when clicking backdrop (not modal content) */
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('checkoutOverlay')) closeCheckout();
+}
+</script>
+
+</body>
+</html>
