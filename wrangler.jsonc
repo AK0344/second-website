@@ -11,11 +11,11 @@
   },
   "compatibility_flags": [
     "nodejs_compat"
-  ],
-  // KV namespace for reservation storage (local dev only).
-  // For production: Cloudflare Pages → Settings → Functions → KV namespace bindings
-  // Binding name: RESERVATIONS_KV — create the namespace in Workers & Pages → KV first.
-  "kv_namespaces": [
-    { "binding": "RESERVATIONS_KV", "id": "fa8c90f2ae954ac79509716ba87a7644" }
   ]
+  // Reservations need a KV namespace. To enable them:
+  //   1. npx wrangler kv namespace create RESERVATIONS_KV
+  //   2. add the block below with the printed id, e.g.:
+  //   "kv_namespaces": [
+  //     { "binding": "RESERVATIONS_KV", "id": "<your-new-id>" }
+  //   ]
 }
